@@ -15,7 +15,8 @@ public class HomeWorkApp {
     }
 
     private static void checkSumSign() {
-        int a = 10, b = -10;
+        int a = 10;
+        int b = -10;
         int sum = a + b;
         if(sum >= 0){
             System.out.println("Сумма положительная");
@@ -36,7 +37,8 @@ public class HomeWorkApp {
     }
 
     private static void compareNumbers() {
-        int a = 1927, b = 286;
+        int a = 1927;
+        int b = 286;
         if (a >= b) {
             System.out.println("a >= b");
         } else {
