@@ -1,12 +1,12 @@
 package ru.geekbrains.hw2;
 
-//test git
-
 public class HomeWorkApp2 {
     public static void main(String[] args) {
         int a = -20;
         int b = 10;
-        boolean result = checkSum(a,b);
+        boolean result;
+
+        result = checkSum(a,b);
         if (result){
             System.out.println("The result of sum is within [10,20]");
         } else {
@@ -28,7 +28,8 @@ public class HomeWorkApp2 {
 
         int year = 2000;
         result = isLeapYear(year);
-        String message = result ? "is a leap year" : "is not a leap year";
+        String message;
+        message = result ? "is a leap year" : "is not a leap year";
         System.out.printf("%d %s", year, message);
     }
 
@@ -39,7 +40,8 @@ public class HomeWorkApp2 {
     }
 
     private static void isPositive(int a){
-        String message = (a>=0) ? "Number is positive" : "Number is negative";
+        String message;
+        message = (a>=0) ? "Number is positive" : "Number is negative";
         System.out.println(message);
     }
 
