@@ -16,8 +16,7 @@ public class HomeWorkApp3 {
         int[] intArr = {1,0,1,1,0,0,0,1,1,0};
         System.out.println("Initial array:  "+ Arrays.toString(intArr));
         for (int i=0; i < intArr.length; i++){
-            int reversed = (intArr[i] == 0) ? 1 : 0;
-            intArr[i] = reversed;
+            intArr[i] = (intArr[i] == 0) ?  1 : 0;
         }
         System.out.println("Reversed array: "+ Arrays.toString(intArr));
         System.out.println("*****************");
@@ -42,8 +41,7 @@ public class HomeWorkApp3 {
 // 4. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое),
 // и с помощью цикла(-ов) заполнить его диагональные элементы единицами (можно только одну из диагоналей, если обе сложно).
 // Определить элементы одной из диагоналей можно по следующему принципу: индексы таких элементов равны, то есть [0][0], [1][1], [2][2], …, [n][n];
-        int n;
-        n = getNumberFromScanner("Please, enter matrix size: ", 2, 20);
+        int n = getNumberFromScanner("Please, enter matrix size: ", 2, 20);
         int[][] matrix = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++){
@@ -62,10 +60,8 @@ public class HomeWorkApp3 {
 
 // 5. Написать метод, принимающий на вход два аргумента: len и initialValue, и возвращающий одномерный массив типа int длиной len,
 // каждая ячейка которого равна initialValue;
-        int len;
-        int initialValue;
-        len = getNumberFromScanner("Please, enter array's length: ", 1, 200);
-        initialValue = getNumberFromScanner("Please, enter array's initial value: ", -100000, 100000);
+        int len = getNumberFromScanner("Please, enter array's length: ", 1, 200);
+        int initialValue = getNumberFromScanner("Please, enter array's initial value: ", -100000, 100000);
         System.out.println("Method created array with length " + len + " and initial value " + initialValue);
         System.out.println(Arrays.toString(createArray(len, initialValue)));
         System.out.println("*****************");
@@ -90,7 +86,7 @@ public class HomeWorkApp3 {
 // checkBalance([1, 1, 1, ||| 2, 1]) → true, т.е. 1 + 1 + 1 = 2 + 1
 // checkBalance([1, 1, 1, 8, 1]) → false
 // граница показана символами |||, эти символы в массив не входят и не имеют никакого отношения к ИЛИ.
-        int[] intArr4 = {20, 2, 2, 2, 2, 2, 10};
+        int[] intArr4 = {21, 2, 2, 2, 2, 2, 11};
         System.out.println("Array for checking balance: " + Arrays.toString(intArr4));
         if (checkBalance(intArr4)) {
             System.out.println("Array is balanced");
