@@ -44,13 +44,8 @@ public class HomeWorkApp3 {
         int n = getNumberFromScanner("Please, enter matrix size: ", 2, 20);
         int[][] matrix = new int[n][n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++){
-                if(i==j || i == n-j-1){
-                    matrix[i][j]=1;
-                } else {
-                    matrix[i][j]=0;;
-                }
-            }
+            matrix[i][i] = 1;
+            matrix[i][n-i-1] = 1;
         }
         System.out.println("Matrix:");
         for (int i = 0; i < n; i++){
@@ -132,16 +127,14 @@ public class HomeWorkApp3 {
     }
 
     private static boolean checkBalance( int arr[]){
-        for(int i = 1; i < arr.length; i++){
-            int sumLeft = 0;
-            for(int j = 0; j < i; j++){
-                sumLeft+=arr[j];
-            }
-            int sumRight = 0;
-            for(int j = i; j < arr.length; j++){
+        int sumLeft = 0, sumRight = 0;
+        for(int i = 0; i < arr.length-1; i++){
+           sumLeft+=arr[i];
+            for(int j = i+1; j < arr.length; j++){
                 sumRight+=arr[j];
             }
             if (sumLeft == sumRight) return true;
+            sumRight=0;
         }
         return false;
     }
