@@ -1,27 +1,45 @@
 package ru.geekbrains.hw6;
 
 public class Animal {
+    static final int SWIM_FAIL = 0;
+    static final int SWIM_OK = 1;
+    static final int SWIM_NONE = -1;
 
-    private String name;
-    private String animalType;
+    protected String name;
+    private String type;
+    private float maxRun;
+    private float maxSwim;
 
-    public Animal(String name) {
-        HomeWorkApp6.animalCount++;
+    public static int countAnimal = 0;
+
+    Animal(String type, String name, float maxRun, float maxSwim) {
+        this.type = type;
         this.name = name;
+        this.maxRun = maxRun;
+        this.maxSwim = maxSwim;
+        ++countAnimal;
     }
-    public void setAnimalType(String type){
-        animalType = type;
+
+    String getName() {
+        return this.name;
     }
-    public String getAnimalType(){
-        return animalType;
+
+    String getType() {
+        return this.type;
     }
-    public String getName(){
-        return name;
+
+    float getMaxRun() {
+        return this.maxRun;
     }
-    public void run(float distance){
-        System.out.println(animalType + name + " runs " + distance + " meters.");
+
+    float getMaxSwim() {
+        return this.maxSwim;
     }
-    public void swim(float distance){
-        System.out.println(animalType + name + " swims " + distance + " meters.");
+
+    protected boolean run(float distance){
+        return (distance <= maxRun);
+    }
+    protected int swim(float distance){
+        return (distance <= maxSwim) ? SWIM_OK : SWIM_FAIL;
     }
 }

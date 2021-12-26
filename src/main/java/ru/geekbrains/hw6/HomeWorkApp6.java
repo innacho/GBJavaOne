@@ -5,40 +5,50 @@ package ru.geekbrains.hw6;
 //3. У каждого животного есть ограничения на действия (бег: кот 200 м., собака 500 м.; плавание: кот не умеет плавать, собака 10 м.).
 //4. * Добавить подсчет созданных котов, собак и животных.
 
+import java.io.Serializable;
+
 public class HomeWorkApp6 {
-    public static int animalCount = 0;
-    public static int dogsCount = 0;
-    public static int catsCount = 0;
+
     public static void main(String[] args) {
-        Dog BobicDog = new Dog("Bobic");
-        BobicDog.run(200.5f);
-        BobicDog.run(505.4f);
-        BobicDog.swim(0.8f);
-        BobicDog.swim(12);
 
-        Dog SharikDog = new Dog("Sharik");
-        SharikDog.run(200.5f);
-        SharikDog.run(505.4f);
-        SharikDog.swim(0.8f);
-        SharikDog.swim(12);
+        String tempWinEvent = ". Attempt succeeded";
+        String tempLossEvent = ". Attempt failed";
+        String eventName;
+        String eventResult;
 
-        Cat BarsicCat = new Cat("Barsic");
-        BarsicCat.run(20.5f);
-        BarsicCat.run(505.4f);
-        BarsicCat.swim(2);
+        Dog dog1 = new Dog("Bobic", 502.3f, 10);
+        Dog dog2 = new Dog("Sharik", 400, 11.5f);
+        Cat cat1 = new Cat("Barsic", 193.5f, 0);
+        Cat cat2 = new Cat("Murzik", 201.4f, 0);
+        Cat cat3 = new Cat("Pushok", 200, 0);
 
-        Cat MurzikCat = new Cat("Murzik");
-        MurzikCat.run(20.5f);
-        MurzikCat.run(505.4f);
-        MurzikCat.swim(2);
+        Animal[] animals = {dog1, dog2, cat1, cat2, cat3};
 
-        Cat PushokCat = new Cat("Pushok");
-        PushokCat.run(199.5f);
-        PushokCat.run(505.4f);
-        PushokCat.swim(0.8f);
+        float runLength = 250;
+        float swimLength = 8;
 
-        System.out.println("Number of dogs is " + dogsCount);
-        System.out.println("Number of cats is " + catsCount);
-        System.out.println("Number of animals is " + animalCount);
+        for (int i = 0; i < animals.length; i++) {
+            String nameString = animals[i].getType() + " " + animals[i].getName() + " can ";
+
+            eventName = "run " + animals[i].getMaxRun() + " m. Tries to run ";
+            eventResult = animals[i].run(runLength) ? tempWinEvent : tempLossEvent;
+            result(nameString, eventName, runLength, eventResult);
+
+            int swimResult = animals[i].swim(swimLength);
+            eventName = "swim " + animals[i].getMaxSwim() + " m. Tries to swim ";
+            eventResult = (swimResult == Animal.SWIM_OK) ? tempWinEvent : tempLossEvent;
+
+            if (swimResult == Animal.SWIM_NONE)
+                eventResult = ". Attempt failed, because cats can't swim";
+            result(nameString, eventName, swimLength, eventResult);
+        }
+
+        System.out.println("Number of dogs is " + Dog.countDog);
+        System.out.println("Number of cats is " + Cat.countCat);
+        System.out.println("Number of animals is " + Animal.countAnimal);
+    }
+
+    private static void result(String nameAnimal, String event, float eventLength, String resultEvent) {
+        System.out.println(nameAnimal + event + eventLength + "" +  resultEvent);
     }
 }
