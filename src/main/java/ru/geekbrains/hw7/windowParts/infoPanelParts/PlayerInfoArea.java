@@ -1,14 +1,22 @@
 package ru.geekbrains.hw7.windowParts.infoPanelParts;
 
-import ru.geekbrains.hw7.windowParts.InfoPanel;
+import ru.geekbrains.hw7.model.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PlayerInfoArea extends JPanel {
- //   private int height = 100;
-    public PlayerInfoArea(InfoPanel infoPanel){
+    private String prefixHP = "Health: ";
+    private String prefixPosition = "Position: ";
+    private String prefixScore = "Current score: ";
+
+    private JLabel playerHP;
+    private JLabel playerPosition;
+    private JLabel score;
+
+    public PlayerInfoArea(){
         setBackground(Color.YELLOW);
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
  //       setPreferredSize(new Dimension(infoPanel.getWidth(),height));
         // ВОПРОС: В строке выше я пыталась установить размер панели PlayerInfoArea по вертикали, но мой способ не сработал.
         // Подскажите, пожалуйста, почему именно метод выше не работает?
@@ -21,8 +29,18 @@ public class PlayerInfoArea extends JPanel {
         setLayout(new GridLayout(4, 1));
 
         add(new JLabel("=Player Info=", SwingConstants.CENTER));
-        add(new JLabel("HP:  100", SwingConstants.LEFT));
-        add(new JLabel("Current score: 0 won/ 0 lost", SwingConstants.LEFT));
+
+        playerHP = new JLabel(prefixHP + "-");
+        playerPosition = new JLabel(prefixPosition + "-:-");
+        score = new JLabel(prefixScore + "-");
+        add(playerHP);
+        add(playerPosition);
+        add(score);
     }
 
+    public void refresh(Player player, int levelCount) {
+        playerHP.setText(prefixHP + player.getHp());
+        playerPosition.setText(prefixPosition + player.getPosition());
+        score.setText(prefixScore + player.getTotalWins()  + " won");
+    }
 }

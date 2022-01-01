@@ -1,6 +1,7 @@
 package ru.geekbrains.hw7.windowParts.infoPanelParts;
 
 import ru.geekbrains.hw7.MainWindow;
+import ru.geekbrains.hw7.model.Player;
 import ru.geekbrains.hw7.windowParts.InfoPanel;
 
 import javax.swing.*;
@@ -17,10 +18,12 @@ public class PlayerControlArea extends JPanel {
     private InfoPanel infoPanel;
     private MainWindow mainWindow;
 
-    public PlayerControlArea(InfoPanel infoPanel, MainWindow mainWindow) {
+    public PlayerControlArea(InfoPanel infoPanel) {
         this.infoPanel = infoPanel;
         this.mainWindow = mainWindow;
         setLayout(new GridLayout(3, 3));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
         // ВОПРОС: можно ли добавить конкретную кнопку в определенное место в сетке, чтобы не создавать кнопки-заглушки emptyButton?
         // То есть мне хотелось оставить части сетки пустыми прямоугольниками, а в другие добавить кнопки. Как это можно сделать?
 
@@ -30,35 +33,34 @@ public class PlayerControlArea extends JPanel {
             add(buttonsArea[i]);
         }
 
-        Icon iconUp = new ImageIcon("C:\\up_triangle.png");
-        up = new JButton(iconUp);
-//        up = new JButton("   UP   ");
-//        up.setIcon(new javax.swing.ImageIcon("ru.geekbrains.hw7.windowParts.infoPanelParts.pics.up_triangle.png"));
-//        //ВОПРОС: Подскажите, пожалуйста, как добавить иконку на кнопку из файла с картинкой. Пробовала указывать путь разными способами, но не получается
-//
+//        Icon iconUp = new ImageIcon("C:\\up_triangle.png");
+//        up = new JButton(iconUp);
+        up = new JButton("⮝"); //\uD83E\uDC45
+
         up.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                infoPanel.printToLog("Up button pressed\n");
+                infoPanel.recordLog("Up button pressed");
+                infoPanel.updatePlayer(Player.playerMoveUp);
             }
         });
         buttonsArea[1].add(up);
 
-        Icon iconLeft = new ImageIcon("C:\\left_triangle.png");
-        left = new JButton(iconLeft);
+//        Icon iconLeft = new ImageIcon("C:\\left_triangle.png");
+//        left = new JButton(iconLeft);
 //        left = new JButton("  LEFT  ");
-//        left.setIcon(new javax.swing.ImageIcon("pics/left_triangle.png"));
-
+        left = new JButton("⮜"); //\uD83E\uDC44
         left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                infoPanel.printToLog("Left button pressed\n");
+                infoPanel.recordLog("Left button pressed");
+                infoPanel.updatePlayer(Player.playerMoveLeft);
             }
         });
         buttonsArea[3].add(left);
 
-        Icon iconRight = new ImageIcon("C:\\right_triangle.png");
-        right = new JButton(iconRight);
+//        Icon iconRight = new ImageIcon("C:\\right_triangle.png");
+//        right = new JButton(iconRight);
 //        right = new JButton("  RIGHT ");
         //ВОПРОС: Текст на кнопке не умещается, обрезался троеточием, хотя вокруг текста до границы кнопки кажется еще много места.
         // Подскажите, пожалуйста, способ разместить на кнопке подпись "RIGHT" полностью.
@@ -67,24 +69,25 @@ public class PlayerControlArea extends JPanel {
 //        right.setIcon(new javax.swing.ImageIcon("pics/right_triangle.png"));
 //        очень плохая идея такое в коде делать new javax.swing.ImageIcon
 //        импорт же сделан библиотеки - вызывайте напрямую класс
-
+        right = new JButton("⮞"); //\uD83E\uDC46
         right.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                infoPanel.printToLog("Right button pressed\n");
+                infoPanel.recordLog("Right button pressed");
+                infoPanel.updatePlayer(Player.playerMoveRight);
             }
         });
         buttonsArea[5].add(right);
 
-        Icon iconDown = new ImageIcon("C:\\down_triangle.png");
-        down = new JButton(iconDown);
+//        Icon iconDown = new ImageIcon("C:\\down_triangle.png");
+//        down = new JButton(iconDown);
 //        down = new JButton("DOWN  ");
-//        down.setIcon(new javax.swing.ImageIcon("pics/down_triangle.png"));
-
+        down = new JButton("⮟"); //\uD83E\uDC47
         down.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                infoPanel.printToLog("Down button pressed\n");
+                infoPanel.recordLog("Down button pressed");
+                infoPanel.updatePlayer(Player.playerMoveDown);
             }
         });
         buttonsArea[7].add(down);
