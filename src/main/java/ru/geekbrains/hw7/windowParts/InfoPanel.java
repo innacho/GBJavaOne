@@ -43,17 +43,27 @@ public class InfoPanel extends JPanel {
     private void createParts() {
         gameControlArea = new GameControlArea(this, mainWindow);
         gameInfoArea = new GameInfoArea();
-        playerInfoArea = new PlayerInfoArea(this);
-        playerControlArea = new PlayerControlArea(this, mainWindow);
+        playerInfoArea = new PlayerInfoArea();
+        playerControlArea = new PlayerControlArea(this);
     }
 
     private void prepareLogs() {
         log = new JTextArea();
+        log.setEditable(false);
+        log.setLineWrap(true);
         scroll = new JScrollPane(log);
     }
 
-    public void printToLog(String message){
-        log.append(message);
+    public void recordLog(String message){
+        log.append(message + "\n");
     }
 
+    public void refreshInfo(GamePanel map) {
+        gameInfoArea.refresh(map.getMapSize(), map.getLevelCount(), map.getCountTrap(), map.getCountCure());
+        playerInfoArea.refresh(map.getPlayer(), map.getLevelCount());
+    }
+
+    public void updatePlayer(int key) {
+        mainWindow.updatePlayer(key);
+    }
 }

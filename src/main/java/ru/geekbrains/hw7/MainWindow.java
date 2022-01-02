@@ -14,21 +14,18 @@ public class MainWindow extends JFrame {
         private int posXW = 100;
         private int posYW = 50;
         private String titleW  = "Game Stay Alive Player";
+        public static String playerName = "Inna";
 
         private InfoPanel infoPanel;
         private GamePanel map;
 
         MainWindow() {
             setupWindow();
-
-            map = new GamePanel();
+            map = new GamePanel(this);
             infoPanel = new InfoPanel(this);
-
             add(map);
             add(infoPanel, BorderLayout.EAST);
-
             setVisible(true);
-
         }
 
         private void setupWindow() {
@@ -37,8 +34,23 @@ public class MainWindow extends JFrame {
             setLocation(posXW, posYW);
             setTitle(titleW);
             setResizable(false);
-   }
+        }
 
+    public void launchGame() {
+        map.launchGame();
+    }
+
+    public void refreshInfo(GamePanel map) {
+        infoPanel.refreshInfo(map);
+    }
+
+    public void recordLog(String str) {
+        infoPanel.recordLog(str);
+    }
+
+    public void updatePlayer(int key) {
+        map.updatePlayer(key);
+    }
 
 }
 
